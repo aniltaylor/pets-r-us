@@ -5,16 +5,17 @@
 <head>
 <meta charset="utf-8">
 <title>Pets-R-Us</title>
-<link href="Pets-R-Us.css" rel="stylesheet" type="text/css">
+<link href="file:///C|/Users/taylor pc/web-340/week-4/pets-r-us/public/styles/Pets-R-Us.css" rel="stylesheet" type="text/css">
 </head>
 <header>
   <div class="header">
-    <img src="groomingsalon.jpg" alt="grooming" width="1223" height="426">
-      <!-- ejs file for header -->
+    <img src="file:///C|/Users/taylor pc/web-340/week-4/pets-r-us/public/images/groomingsalon.jpg" alt="grooming" width="1223" height="426">
+     </div>
+	    <!-- ejs file for header -->
 <%- include('./partials/header.html')%>
-  </div>
 </header>
 <body>
+
 <div id="container1">
 	<h2>Locations</h2>
 		<p>Come and see us at our Bellevue Location. 
@@ -24,10 +25,10 @@
 		</p></div>
 		<div id="container2">
 	         <h2>Location Hours</h2>
-			<p>Hours of Operation at all locations:</p>
+			<h3>Hours of Operation at all locations:</h3>
 			<p>6am-6pm M-F</p>
 			<p>8am-8pm S-Su</p>
-			<p>24 hour boarding services also available</p>
+			<h3>***24 hour boarding services also available***</h3>
 	</div>
 		<div id="container3">
 	<h2>Dog of the week</h2>
@@ -42,11 +43,11 @@
 		<div id="container5">
 	<h2>Contact Us</h2>
 		<p>
-			 Having a contact form on your webstie is just as important as having a phjone in your office would be. I na world where Convenience is the name of the game it's important to have things at your fingertips. HTML (Hypertext Markup Language) is the standard code used to make most of the websites and apps on the internet. And as with any language, except for the language of love, it’s not something you can just learn in one night. Although I must say that love is something you will be studying your whole life to get right. The good news is that you can create an HTML contact form without dedicating your life to coding. So don't worry if you don't know your UTF-8 from your SRC -In this guide we'll show you how to create a simple HTML and PHP contact form to email using easy to understand code.Just name the file and follow it with .html. When you’re dealing with code it’s best to keep things clear, so we suggest naming the file ‘contact_form.html’ or something similar. I chose to write this contact form in it's simplist form because i was so worried about time constraints i did not get it done as early as i wanted too. I wanted to make it look prettier but i didn't have time to get it looking the way i wanted. I will work on the rest of it next week.
+			 Having a contact form on your website is just as important as having a phone in your office would be. I na world where Convenience is the name of the game it's important to have things at your fingertips. HTML (Hypertext Markup Language) is the standard code used to make most of the websites and apps on the internet. And as with any language, except for the language of love, it’s not something you can just learn in one night. Although I must say that love is something you will be studying your whole life to get right. The good news is that you can create an HTML contact form without dedicating your life to coding. So don't worry if you don't know your UTF-8 from your SRC -In this guide we'll show you how to create a simple HTML and PHP contact form to email using easy to understand code.Just name the file and follow it with .html. When you’re dealing with code it’s best to keep things clear, so we suggest naming the file ‘contact_form.html’ or something similar. I chose to write this contact form in it's simplest form because i was so worried about time constraints i did not get it done as early as i wanted too. I wanted to make it look prettier but i didn't have time to get it looking the way i wanted. I will work on the rest of it next week.
 			Use a form element to process the input. You can learn more about this in our PHP tutorial. Then add inputs (with a matching label) for each field:</p>
 			<p>To get a call back please fill out the form below</p>
 			<div id="container6">
-			<form action="action_page.php">
+			<form action="file:///C|/Users/taylor pc/web-340/week-4/pets-r-us/action_page.php">
 	<p><label for="fname">First Name</label>
 				<input type="text" id="fname" name="firstname" placeholder="Your first name.."></p>
 
@@ -56,7 +57,7 @@
 				<input type="text" id="phone" name="phonenum" placeholder="Your Phone #.."></p>
 				<input type="submit" value="Submit"></form></div>
 	</div>
-	<!-- adding footer with ejs -->
-	<%- include('./partials/footer.html')%>	
+	<!-- ejs file for footer -->
+		<%- include('./partials/footer.html')%>
 	</body>
 </html>
