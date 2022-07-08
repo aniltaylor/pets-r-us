@@ -1,10 +1,8 @@
 /*
-; Author: Andrew (Andy) Britt
-; Date: 19 Jun 2022
+; Author: ANITA TAYLOR
+; Date: 24 Jun 2022
 ; File name: index.js
 ; Description: index.js file for week-4/ WEB-340
-; Reference: https://www.youtube.com/watch?v=A01KtJTv1oc&t=726s
-; Reference: https://www.geeksforgeeks.org/how-to-setup-view-engine-in-node-js/
 ; Date referenced: 19 Jun 2022
 */
 
@@ -25,44 +23,129 @@ const PORT = process.env.PORT || 300O;
 
 VAR conn = 'mongodb+srv://aniltaylor:<password>@buwebdev-cluster-1.yosnz6p.mongodb.net/test';
 
-// Static files
+mongoose.connect(CONN).then(() => {
+  console.log('Connection to MongoDB database was successful');
+}).catch(err => {
+  console.log('MongoDB Error: ' + err.message);
+});
+
+//Static Files
 app.use(express.static("public"));
-app.use('/partials', express.static(__dirname + 'views/partials'));
-app.use('/images', express.static(__dirname + 'public/images'));
-app.use('/styles', express.static(__dirname + 'public/styles'));
-app.use('/js', express.static(__dirname + 'public/js'));
+app.use("/images", express.static(__dirname + "public/images"));
+app.use("/styles", express.static(__dirname + "public/styles"));
+app.use("/styles/site.css", express.static(__dirname + "public/styles/site.css"));
 
-// Adding and setting EJS to the apps view engine
+//HTML Routes
+
 app.engine('.html', require('ejs').__express);
-app.set('views', './views');
-app.set('view engine', 'ejs');
 
-// Sending Index HTML
-app.get('', (req, res)=>
-{
-    res.render('index.html');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'html');
+app.set("views", "./views");
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
+app.use(cookieParser());
+
+app.use(session({
+  secret: 's3cret',
+  resave: true,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.get("", (req, res) => {
+  let errorMessage = '';
+
+  let users = User.find({}, function (err, users) {
+    if (err) {
+      console.log(err)
+      errorMessage = 'MongoDB Exception: ' + err;
+    } else {
+      errorMessage = null;
+    }
+
+    res.render('index', {
+      title: 'Pet-R-Us: Home',
+      
+      pageName: 'Home Page'
+    })
+  })
 });
 
-// Sending Grooming page
-app.get('/grooming', (req, res)=> 
-{
-    res.render('grooming.html');
+app.get("/grooming", (req, res) => {
+  res.render('grooming', {
+    title: 'Pets-R-Us Grooming',
+    
+    pageName: 'Grooming Page'
+  });
 });
-
-// Sending Training page
-app.get('/training', (req, res)=> 
-{
-    res.render('training.html');
+app.get("/boarding", (req, res) => {
+  res.render('boarding', {
+    title: 'Pets-R-Us Boarding',
+    
+    pageName: 'Boarding Page'
+  });
 });
-
-// Sending Boarding page
-app.get('/boarding', (req, res)=> 
-{
-    res.render('boarding.html');
+app.get("/training", (req, res) => {
+  res.render('training', {
+    title: 'Pets-R-Us Training',
+    
+    pageName: 'Training Page'
+  });
 });
+app.get("/registration", (req, res) => {
+  User.find({}, function(err, users) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('registration', {
+        title: 'Pets-R-Us Registration',
+        
+        cardTitle: 'Registration Form',
+        moment: moment,
+        users: users
+    })}
+  })
+ });
+ app.post('/register', (req, res, next) => {
+  const username = req.body.username;
+  const password = req.body.password;
 
-// Listen and Logging on port 3000
-app.listen(PORT, ()=>
-{
-    console.log('The application is listening on ' + PORT);
+  User.register(new User({username: username}), password, function (err, user) {
+    if (err) {
+      console.log(err);
+      return res.redirect('/registration');
+    }
+    passport.authenticate("local")(
+      req, res, function () {
+        res.redirect('/registration')
+      });
+  })
+ })
+app.post('users', (req, res) => {
+  const userName = req.body.userName;
+  console.log(req.body);
+  let user = new User ({
+    name: userName
+  })
+  User.create(user, function (err, fruit) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect('/');
+    }
+  })
+})
+//Listen on Port 3000
+app.listen(PORT, () => {
+  console.log("Application started and listening on port" + PORT);
 });
