@@ -10,8 +10,20 @@
 
 //requiring Express and declaring the port used
 const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const passport = require('passport')
+const LocalStrategy = require('passport-local');
+const session = require('express-session');
+const moment = require('moment');
+//Mongoose model imports
+const User = require('./models/user');
+
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 300O;
+
+VAR conn = 'mongodb+srv://aniltaylor:<password>@buwebdev-cluster-1.yosnz6p.mongodb.net/test';
 
 // Static files
 app.use(express.static("public"));
