@@ -21,7 +21,7 @@ const User = require('./models/user');
 const app = express();
 const PORT = process.env.PORT || 300O;
 
-VAR conn = 'mongodb+srv://aniltaylor:<password>@buwebdev-cluster-1.yosnz6p.mongodb.net/test';
+VAR conn = 'mongodb+srv://aniltaylor:<12-Stepmafia>@buwebdev-cluster-1.yosnz6p.mongodb.net/test';
 
 mongoose.connect(CONN).then(() => {
   console.log('Connection to MongoDB database was successful');
