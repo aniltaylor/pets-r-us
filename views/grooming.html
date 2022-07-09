@@ -10,13 +10,7 @@
 <header>
   <div class="header">
     <img src="groomingsalon.jpg" alt="grooming" width="1223" height="426">
-    <ul id="nav">
-      <li><a href="home.html" class="external" target="blank">Home</a></li>
-      <li><a href="boarding.html" class="external" target="blank">Boarding</a></li>
-      <li><a href="grooming.html" class="external" target="blank">Grooming</a></li>
-      <li><a href="training.html" class="external" target="blank">Training</a></li>
-      <li><a href="myaccount.html" class="external" target="blank">My Account</a></li>
-    </ul>
+   <%- include('./partials/header.ejs')%>
   </div>
 </header>
 <body>
@@ -45,6 +39,6 @@
 				<input type="text" id="phone" name="phonenum" placeholder="Your Phone #.."></p>
 				<input type="submit" value="Submit"></form></div>
 	</div>
-		<footer id="footerbottom">Copyright &copy; 2022 <a href="mailto:aniltaylor@my365.bellevue.edu">Anita Taylor</a></footer>
+		<%- include('./partials/footer.ejs')%>
 	</body>
 </html>
