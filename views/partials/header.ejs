@@ -15,12 +15,25 @@
   </div>
 </header>
 <body><ul id="nav">
-     <li><a href="pets-r-us/home.html">Home</a></li>
-      <li><a href="boarding.html">Boarding</a></li>
-      <li><a href="grooming.html">Grooming</a></li>
-      <li><a href="training.html">Training</a></li>
-      <li><a href="myaccount.html">My Account</a></li>
+              <li class="item"><a href="index">Home</a></li>
+              <li class="item"><a href="boarding">Boarding</a></li>
+              <li class="item"><a href="grooming">Grooming</a></li>
+              <li class="item"><a href="training">Training</a></li>
+              <li class="item"><a href="appointment">Book Now!</a></li>
+              <li class="item"><a href="registration">Register</a></li>
+              <li class="item"><a href="login">Log In</a></li>
+              <li class="item"><a href="profile">My Profile</a></li>
     </ul>
- 
+            <div style="text-align: right; float: right">
+              <% if(currentUser) { %>
+                  <a href="#">Hello, <%= currentUser %></a> <a href="/logout">Logout</a>
+              <% } %>
+      
+              <% if(!currentUser) { %>
+                  <a href="/registration">Register!</a> <a href="/login">Login</a>
+              <% } %>
+          </div>
+          </nav>
+    </div>
 
 
