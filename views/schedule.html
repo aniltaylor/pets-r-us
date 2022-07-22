@@ -1,0 +1,43 @@
+<%- include('./partials/header.ejs')%>
+
+<h1>Book your appointment now!</h1>
+<div class="card">
+    <div class="card-content">
+        <div class="form">
+            <form action="/book" method="post">
+                <div class="form-field">
+                    
+                    <label for="fname">First Name</label><br />
+                    <input class="input" type="text" name="fName" id="fName" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="lName">Last Name</label><br />
+                    <input class="input" type="text" name="lname" id="lname" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email</label><br />
+                    <input class="input" type="email" name="email" id="email" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="services">Services</label><br />
+                    <select name="services" id="services" class="drop-down-menu full-width">
+                        <% services.forEach((services) => { %>
+                            <option value= <%= services.name %>> </option>
+                            <% }) %>
+                        </select>
+                </div>
+
+                <div class="form-field">
+                    <input type="submit" value="Book Now!" class="btn btn-primary full-width">
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./partials/footer.ejs')%>
