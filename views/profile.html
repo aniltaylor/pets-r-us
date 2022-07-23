@@ -14,18 +14,17 @@ and variables in an application.
 
 
     <!-- import header -->
-       <header><%- include('./partials/header'); %></header>
+  <%- include('./partials/header'); %></header>
     <!-- sign up card with form -->
     <section class="container signUpContainer" style="margin-bottom: 300px">
       <div class="card">
-        <h1 class="card-title"><%= cardTitle %></h1>
-
-        <ul style="text-align: left; padding-left: 20px">
-          <% if(currentUser) { %>
+        <h1 class="card-title"><%= currentUser %></h1>
+          <ul style="text-align: left; padding-left: 20px">
+            <% if(currentUser) { %>
           <br />
-          <li>User name:<%= currentUser %></li>
-          <% } %>
-        </ul>
+         <li>User name:<%= currentUser %></li>
+        <% } %>
+      </ul>
 
         <!-- loop over every user sign in with username, email, and createdAt -->
         <div id="appointments"></div>
@@ -34,16 +33,15 @@ and variables in an application.
 
     <script>
       fetch("/api/appointments")
-        .then((res) => res.json())
+       .then((res) => res.json())
         .then((data) => {
-          let tableString = `<br /><h4 style="font-size: 32px; text-align: center; padding-bottom: 10px;">My Appointments</h4><table id="appointments" class="table"><tr><th>First name</th><th>Last name</th><th>Email</th><th>Service</th></tr>`;
-          for (let appointment of data) {
-            tableString += `<tr><td>${appointment.firstName}</td><td>${appointment.lastName}</td><td>${appointment.email}</td><td>${appointment.service}</td></tr>`;
-          }
-          tableString += `</table>`;
-          document.getElementById("appointments").innerHTML = tableString;
-        });
-    </script>
-
-    <footer class="footer"><%- include('./partials/footer'); %></footer>
+          let tableString = `<br /><h4 style="font-size: 32px; text-align: center; padding-bottom: 10px;">My Appointments</h4><table id="appointments" class="table"><tr><th>First name</th><th>Last name</th><th>Email</th><th>Service</th></tr   >`;
+            for (let appointment of data) {
+           tableString += `<tr><td>${appointment.firstName}</td><td>${appointment.lastName}</td><td>${appointment.email}</td><td>${appointment.service}</td></tr>`;
+         }
+       tableString += `</table>`;
+     document.getElementById("appointments").innerHTML = tableString;
+   });
+  </script>
+<footer class="footer"><%- include('./partials/footer'); %></footer>
   
